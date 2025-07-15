@@ -1,0 +1,9 @@
+# hello.yml
+---
+- name: Hello World from Splunk
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Say Hello
+      debug:
+        msg: "Hello World from Splunk event!"
