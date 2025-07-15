@@ -1,0 +1,12 @@
+---
+- name: Splunk Hello World Rulebook
+  hosts: localhost
+  sources:
+    - ansible.eda.webhook:
+        port: 5001
+  rules:
+    - name: trigger hello world
+      condition: event.payload.alert_name == "test-hello-alert"
+      action:
+        run_playbook:
+          name: hello.yml
