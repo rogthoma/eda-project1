@@ -10,3 +10,4 @@
       action:
         run_playbook:
           name: hello_world.yml
+          inventory: localhost
