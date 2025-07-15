@@ -9,4 +9,4 @@
       condition: event.payload.alert_name == "test-hello-alert"
       action:
         run_playbook:
-          name: hello.yml
+          name: hello_world.yml
