@@ -1,12 +1,16 @@
 ---
-- name: Splunk Hello World Rulebook
+- name: Trigger Hello World on Argo Server Logs
   hosts: localhost
   sources:
-    - ansible.eda.webhook:
-        port: 5001
+    - name: splunk
+      ansible.eda.splunk:
+        host: "{{ splunk_host }}"
+        token: "{{ splunk_token }}"
+        query: 'search index="cmp-splunk-dev" container_name="argo-server" earliest=-5m'
+        delay: 30
   rules:
-    - name: trigger hello world
-      condition: event.payload.alert_name == "test-hello-alert"
+    - name: Run Hello World if container is argo-server
+      condition: event.container_name is defined and event.container_name == "argo-server"
       action:
         run_job_template:
           name: Demo Job Template
