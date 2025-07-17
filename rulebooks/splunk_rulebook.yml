@@ -2,11 +2,13 @@
 - name: Minimal trigger
   hosts: localhost
   sources:
-    - ansible.eda.webhook:
-      host: 0.0.0.0
-      port: 5000
+    - name: generic
+      ansible.eda.generic:
+        payload:
+          trigger: "go"
   rules:
     - name: Run demo template
+      condition: event.trigger == "go"
       action:
         run_job_template:
           name: Demo Job Template
