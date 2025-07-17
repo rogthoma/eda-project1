@@ -5,20 +5,9 @@
     - name: range
       ansible.eda.range:
         limit: 5
-  filters:
-    - name: check_reachability
-      type: python
-      source: |
-        def main(event):
-            import socket
-            try:
-                socket.create_connection(("rogthoma-dev-01", 8000), timeout=3)
-                return event  # proceed if reachable
-            except:
-                return None   # drop event if unreachable
   rules:
     - name: Run Hello World if rogthoma-dev-01 is reachable
-      condition: event is defined
+      condition: always
       action:
         run_job_template:
           name: Demo Job Template
