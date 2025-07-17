@@ -8,7 +8,6 @@
           trigger: "go"
   rules:
     - name: Run demo template
-      condition: event.trigger == "go"
       action:
         run_job_template:
           name: Demo Job Template
