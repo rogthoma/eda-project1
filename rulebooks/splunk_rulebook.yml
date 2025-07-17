@@ -2,9 +2,9 @@
 - name: Hello World Rulebook
   hosts: localhost
   sources:
-    - name: periodic
-      ansible.eda.time:
-        delay: 60  # every 60 seconds
+    - name: range
+      ansible.eda.range:
+        limit: 5
   rules:
     - name: Run Hello World if rogthoma-dev-01 is reachable
       condition: event is defined
