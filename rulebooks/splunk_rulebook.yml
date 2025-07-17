@@ -1,9 +1,6 @@
 ---
 - name: Hello World Rulebook
   hosts: localhost
-  sources:
-    - timer:
-        interval: 60
   rules:
     - name: Run Hello World if rogthoma-dev-01 is reachable
       condition: event is defined
