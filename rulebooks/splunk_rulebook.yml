@@ -1,22 +1,25 @@
 ---
-- name: Check reachability of rogthoma-dev-01 and run job
+- name: Trigger job manually with reachability check
   hosts: localhost
   sources:
-    - name: periodic
-      ansible.eda.time:
-        delay: 60  # every 60 seconds
+    - name: generic
+      ansible.eda.generic:
+        payload:
+          trigger: "start"
 
   filters:
-    - name: check_reachability
+    - name: delay_and_reachability
       type: python
       source: |
         def main(event):
+            import time
             import socket
+            time.sleep(60)  # Delay inside the filter
             try:
                 socket.create_connection(("rogthoma-dev-01", 8000), timeout=3)
-                return event  # proceed if reachable
+                return event
             except:
-                return None   # drop event if unreachable
+                return None
 
   rules:
     - name: Run Hello World if rogthoma-dev-01 is reachable
