@@ -1,26 +1,9 @@
 ---
-- name: Trigger job manually with reachability check
+- name: Hello World Rulebook
   hosts: localhost
   sources:
-    - name: generic
-      ansible.eda.generic:
-        payload:
-          trigger: "start"
-
-  filters:
-    - name: delay_and_reachability
-      type: python
-      source: |
-        def main(event):
-            import time
-            import socket
-            time.sleep(60)  # Delay inside the filter
-            try:
-                socket.create_connection(("rogthoma-dev-01", 8000), timeout=3)
-                return event
-            except:
-                return None
-
+    - timer:
+        interval: 60
   rules:
     - name: Run Hello World if rogthoma-dev-01 is reachable
       condition: event is defined
