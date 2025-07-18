@@ -1,6 +1,6 @@
 ---
 - name: Webhook trigger on GET
-  hosts: localhost
+  hosts: all
   sources:
     - name: webhook
       ansible.eda.webhook:
