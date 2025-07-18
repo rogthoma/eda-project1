@@ -1,10 +1,10 @@
 ---
 - name: Webhook trigger on GET
-  hosts: all
+  hosts: localhost
   sources:
     - name: webhook
       ansible.eda.webhook:
-        port: 8000
+        port: 5000
   rules:
     - name: Run demo template on GET
       condition: event.meta.headers.method == "GET"
