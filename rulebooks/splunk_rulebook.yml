@@ -10,7 +10,7 @@
 
   rules:
     - name: Trigger Job if Count > 1 in last 10 minutes
-      condition: event.payload.count | int > 1
+      condition: event.payload.count > 1
       action:
         run_job_template:
           name: Demo Job Template
