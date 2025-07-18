@@ -1,0 +1,17 @@
+---
+- name: Splunk Last 10 Minutes Count Monitor
+  hosts: localhost
+  sources:
+    - ansible.eda.splunk:
+        host: "{{ splunk_url }}"
+        token: "{{ splunk_token }}"
+        query: "search index=cmp-splunk-dev earliest=-10m | stats count"
+        polling_interval: 60
+
+  rules:
+    - name: Trigger Job if Count > 1 in last 10 minutes
+      condition: event.payload.count | int > 1
+      action:
+        run_job_template:
+          name: Demo Job Template
+          organization: Default
