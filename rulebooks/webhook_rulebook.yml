@@ -7,9 +7,9 @@
         host: 0.0.0.0
         port: 5000
   rules:
-    - name: Run demo template
-      condition: event.trigger == "go"
+    - name: Say Hello
+      condition: event.payload.message == "Ansible is super cool"
       action:
-        run_job_template:
-          name: Demo Job Template
-          organization: Default
+        python:
+          code: |
+            print(f"Received event: {event}")
