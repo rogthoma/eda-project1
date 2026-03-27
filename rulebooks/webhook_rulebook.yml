@@ -9,7 +9,6 @@
   ## Define the conditions we are looking for
   rules:
     - name: Say Hello
-      condition: event.payload.message == "Ansible is super cool"
       action:
         debug:
           msg: "Event received!"
