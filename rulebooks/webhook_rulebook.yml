@@ -1,15 +1,15 @@
 ---
 - name: Listen for events on a webhook
   hosts: localhost
-  ## Define our source for events
+
   sources:
     - ansible.eda.webhook:
         host: 0.0.0.0
         port: 5000
+
   rules:
     - name: Say Hello
       condition: event.payload.message == "Ansible is super cool"
       action:
-        python:
-          code: |
-            print(f"Received event: {event}")
+        print_event: {}
+
