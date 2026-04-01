@@ -12,4 +12,3 @@
       condition: event.payload.message == "Ansible is super cool"
       action:
         print_event: {}
-
